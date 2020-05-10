@@ -14,7 +14,7 @@ def get_shortest_distances(graphframe, dst_id):
     results_df = graphframe.shortestPaths(landmarks=[dst_id])
     distances = {}
     for r in results_df.rdd.collect():
-        distances[r.id] = r.distances[dst_id]
+        distances[r.id] = r.distances[dst_id] if dst_id in r.distances else -1
     
     return distances
 
